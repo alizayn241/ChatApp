@@ -23,15 +23,30 @@ class _SplashScreenState extends State<splashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset('assets/images/logo.png'),
-              Text(
-                'WhatsApp',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ]),
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 200,
+                ),
+                Text(
+                  'WhatsUp',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  'The best chat app for this century',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 55, 147, 37)),
+                ),
+              ]),
+        ),
       ),
     );
   }
