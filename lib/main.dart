@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:chat_app/features/splash_screen/splashScreen.dart';
+import 'package:chat_app/features/auth/splash_screen/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());
