@@ -33,7 +33,7 @@ class _SplashScreenState extends State<splashScreen> {
                 ),
                 Text(
                   'WhatsUp',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 50,
