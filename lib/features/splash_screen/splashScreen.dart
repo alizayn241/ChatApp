@@ -1,4 +1,4 @@
-import 'package:chat_app/features/auth/presentation/views/loginView.dart';
+import 'package:chat_app/features/auth/presentation/views/widgets/login_view.dart';
 import 'package:flutter/material.dart';
 
 class splashScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
+import 'package:chat_app/features/auth/presentation/views/widgets/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:chat_app/features/splash_screen/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.interTextTheme(),
         useMaterial3: true,
       ),
-      home: splashScreen(),
+      home: const loginpage(),
     );
   }
 }
