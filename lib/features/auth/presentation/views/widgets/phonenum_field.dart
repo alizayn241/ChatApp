@@ -2,7 +2,8 @@ import 'package:chat_app/core/shared_widgets/defoult_text.dart';
 import 'package:flutter/material.dart';
 
 class PhonenumField extends StatelessWidget {
-  const PhonenumField({super.key});
+  const PhonenumField(
+      {super.key, required TextEditingController Phonenumcontroller});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class PhonenumField extends StatelessWidget {
           return null;
         }
       },
+      error: '',
     );
   }
 }

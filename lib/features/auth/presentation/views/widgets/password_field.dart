@@ -29,6 +29,7 @@ class PasswordField extends StatelessWidget {
           return null;
         }
       },
+      error: '',
     );
   }
 }

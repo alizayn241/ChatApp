@@ -20,6 +20,7 @@ class EmailField extends StatelessWidget {
           return null;
         }
       },
+      error: '',
     );
   }
 }

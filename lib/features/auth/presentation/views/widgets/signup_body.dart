@@ -1,4 +1,5 @@
-import 'package:chat_app/features/auth/home/homeView.dart';
+import 'package:chat_app/contreoller/authController.dart';
+import 'package:chat_app/features/home/homeView.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/confirm_row.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/email_field.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/logo_widget.dart';
@@ -8,6 +9,9 @@ import 'package:chat_app/features/auth/presentation/views/widgets/phonenum_field
 import 'package:chat_app/features/auth/presentation/views/widgets/signup_button.dart';
 import 'package:chat_app/features/auth/presentation/views/widgets/signup_title.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/instance_manager.dart';
 
 class SignupBody extends StatefulWidget {
   const SignupBody({super.key});
@@ -15,8 +19,8 @@ class SignupBody extends StatefulWidget {
   State<SignupBody> createState() => _SignupBodyState();
 }
 
-TextEditingController Emailcontroller = TextEditingController();
-TextEditingController Passwordcontroller = TextEditingController();
+TextEditingController email = TextEditingController();
+TextEditingController password = TextEditingController();
 TextEditingController Namecontroller = TextEditingController();
 TextEditingController Phonenumcontroller = TextEditingController();
 bool isPasswordVisible = false;
@@ -25,6 +29,7 @@ class _SignupBodyState extends State<SignupBody> {
   var formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    Authcontroller authcontroller = Get.put(Authcontroller());
     return Form(
         key: formkey,
         child: Padding(
@@ -41,22 +46,24 @@ class _SignupBodyState extends State<SignupBody> {
                 SizedBox(
                   height: 20,
                 ),
-                NameField(),
+                NameField(
+                  Namecontroller: Namecontroller,
+                ),
                 SizedBox(
                   height: 20,
                 ),
                 EmailField(
-                  Emailcontroller: Emailcontroller,
+                  Emailcontroller: email,
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                PhonenumField(),
+                PhonenumField(Phonenumcontroller: Phonenumcontroller),
                 SizedBox(
                   height: 20,
                 ),
                 PasswordField(
-                  Passwordcontroller: Passwordcontroller,
+                  Passwordcontroller: password,
                   toogleVisibility: () {
                     setState(() {
                       isPasswordVisible = !isPasswordVisible;
@@ -67,18 +74,27 @@ class _SignupBodyState extends State<SignupBody> {
                 SizedBox(
                   height: 20,
                 ),
-                SignupButton(
-                    emailController: Emailcontroller,
-                    passwordController: Passwordcontroller,
-                    nameController: Namecontroller,
-                    phonenumController: Phonenumcontroller,
-                    onSuccess: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Homeview(),
-                          ));
-                    }),
+                Obx(
+                  () => authcontroller.isloading.value
+                      ? CircularProgressIndicator()
+                      : SignupButton(
+                          emailController: email,
+                          passwordController: password,
+                          nameController: Namecontroller,
+                          phonenumController: Phonenumcontroller,
+                          onSuccess: () {
+                            authcontroller.isloading.value = true;
+                            authcontroller.createUser(
+                              email.text,
+                              password.text,
+                            );
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Homeview(),
+                                ));
+                          }),
+                ),
                 SizedBox(
                   height: 10,
                 ),

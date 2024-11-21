@@ -14,6 +14,7 @@ Widget defaultText({
   Function()? pressed,
   Function()? tap,
   bool? enable,
+  required String error,
 }) =>
     TextFormField(
       onTap: tap,
